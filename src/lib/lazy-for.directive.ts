@@ -1,23 +1,25 @@
+import { QuantityDirective } from './quantity.directive';
 import { NgxLazyNgforService } from './ngx-lazy-ngfor.service';
-import { Directive, ElementRef, Input, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
+import { Directive, ElementRef, Inject, Input, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
 
 
 @Directive({
-  selector: '[lazyFor][lazyForOf]'
+  selector: '[lazyFor][lazyForOf]',
+  providers: [QuantityDirective]
 })
 export class LazyForDirective {
 
-
   lazyObject: any[] = [];
   startOject: any[];
-  element: ElementRef;
-  @Input() quantity: number = 5;
+  element:ElementRef;
+  quantity: string;
   counter = 0;
   @Input() set lazyForOf(collection) {
+    this.quantity =this.element.nativeElement.parentElement.getAttribute("data-quantity") || "10";
     this.counter = 0;
     this.startOject = collection;
     this.view.clear();
-    this.ngxLazyNgforService.loadMore(this.quantity, this.startOject, this.lazyObject, this.counter);
+    this.ngxLazyNgforService.loadMore(parseInt(this.quantity), this.startOject, this.lazyObject, this.counter);
     this.lazyObject.forEach((item, index) => {
       this.view.createEmbeddedView(this.template, { $implicit: item, index });
     });
@@ -30,7 +32,9 @@ export class LazyForDirective {
 
 
 
-  constructor(public elementr: ElementRef, private ngxLazyNgforService: NgxLazyNgforService, private view: ViewContainerRef, private template: TemplateRef<any>) {  }
+  constructor(public elementr: ElementRef, private ngxLazyNgforService: NgxLazyNgforService, private view: ViewContainerRef, private template: TemplateRef<any>, private quantityDirective: QuantityDirective)  { 
+      this.element = elementr;
+   }
 
 
 
@@ -44,8 +48,8 @@ export class LazyForDirective {
 
     if (this.isInBottom(element)) {
       if (this.counter < this.startOject.length) {
-        this.counter += this.quantity;
-        this.ngxLazyNgforService.loadMore(this.quantity, this.startOject, this.lazyObject, this.counter);
+        this.counter += parseInt(this.quantity);
+        this.ngxLazyNgforService.loadMore(parseInt(this.quantity), this.startOject, this.lazyObject, this.counter);
         this.lazyObject.forEach((item, index) => {
           this.view.createEmbeddedView(this.template, { $implicit: item, index });
         });

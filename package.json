@@ -1,0 +1,31 @@
+{
+  "name": "ngx-lazy-ngfor",
+  "description": "Lazy loading for ngFor.",
+  "version": "0.0.1",
+  "author": "Ruben Santibanez Acosta (https://github.com/rubensantibanezacosta)",
+  "repository": "https://github.com/rubensantibanezacosta/ngx-scroll-view",
+  "homepage": "https://github.com/rubensantibanezacosta/ngx-scroll-view",
+  "keywords": [
+    "lazy",
+    "lazy-loading",
+    "ngx",
+    "angular",
+    "ngFor",
+    "lazy-for",
+    "scroll"
+  ],
+  "bugs": {
+    "email": "rubensantibanezacosta@gmail.com"
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/common": "^12.2.0",
+    "@angular/core": "^12.2.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "ng-packagr": "^13.3.1"
+  }
+}

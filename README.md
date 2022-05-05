@@ -1,25 +1,78 @@
-# NgxLazyNgfor
+# ngx-scroll-view - [Angular](http://angular.io/)
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.0.
+Ngx scroll view is a Typescript library for make angular *ngFor* lazy, and triggered by scroll event.
 
-## Code scaffolding
+## Dependencies
 
-Run `ng generate component component-name --project ngx-lazy-ngfor` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ngx-lazy-ngfor`.
-> Note: Don't forget to add `--project ngx-lazy-ngfor` or else it will be added to the default project in your `angular.json` file. 
+- [Angular](https://angular.io) (_requires_ Angular 13+)
 
-## Build
+## Versions
 
-Run `ng build ngx-lazy-ngfor` to build the project. The build artifacts will be stored in the `dist/` directory.
+- _**[Version - 0.0.3](https://www.npmjs.com/package/ngx-scroll-view)**_ - _Basic and custom animations_
+- _**[Version - 0.1.3](https://www.npmjs.com/package/ngx-scroll-view)**_ - _Pre-animation and pos-animation triggers added_
 
-## Publishing
+## Installation
 
-After building your library with `ng build ngx-lazy-ngfor`, go to the dist folder `cd dist/ngx-lazy-ngfor` and run `npm publish`.
+Install above dependencies via _npm_, run:
 
-## Running unit tests
+```shell
+npm install --save ngx-lazy-ngfor
+```
 
-Run `ng test ngx-lazy-ngfor` to execute the unit tests via [Karma](https://karma-runner.github.io).
+---
 
-## Further help
+Once installed you need to import the main module:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-# ngx-lazy-ngfor
+```ts
+import { NgxLazyNgforModule } from 'ngx-lazy-ngfor';
+
+
+@NgModule({
+  declarations: [AppComponent, ...],
+  imports: [NgxLazyNgforModule],
+  bootstrap: [AppComponent]
+})
+export class AppModule {
+}
+```
+
+## Usage
+
+The library uses only one directive: `scrollView`.
+
+### LazyFor Directive
+
+---
+
+Use this directive to reveal a **single DOM element** upon scroll.
+
+##### Basic Usage
+
+```html
+<parentElement> 
+<div class="item" *lazyFor="let yourVariable of YourObject">..</div>
+</parentElement>
+```
+Parent element must be scrollable vertically.
+
+You could use the same functionalities of Angular *ngFor*
+
+##### With Custom Options
+
+As default, you will have 5 elements in your viewport.
+You can also pass in a custom configuration to the directive.
+
+
+
+ ** this functionality will be in the next version
+
+
+This will override the default configuration used when revealing this particular element.
+
+
+
+---
+
+## Credits
+
+_[ngx-scroll-view](https://www.npmjs.com/package/ngx-scroll-view)_ - is built by [Ruben Santibañez Acosta](https://github.com/rubensantibanezacosta). Put a :star2: in **[Github](https://github.com/rubensantibanezacosta/ngx-scroll-view)** Please!
